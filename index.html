@@ -9,35 +9,27 @@
             text-decoration: line-through;
             opacity: 0.5;
         }
+        nav { margin-bottom: 20px; }
+        nav a { margin-right: 10px; }
     </style>
-
 </head>
-<body ng-controller="MainController">
 
-    <!-- 1. Two-way data binding: digite algo e veja aparecer em tempo real -->
-    <input type="text" ng-model="name">
-    <p>Olá, {{ name }}!</p>
+<body>
 
-    <!-- 2. ng-click: botão que faz algo -->
-    <input type="text" ng-model="newTask">
-    <button ng-click="addNewTask()">add</button>
-    <!-- 3. ng-repeat: lista de itens -->
-    <ul>
-        <li ng-repeat="task in tasks track by $index" ng-class="{'done': task.done}">
-            {{ task.name }}
-            <button ng-click="task.done = !task.done">
-                {{task.done ? 'Undone' : 'Done'}}
-            </button>
-            <button ng-click="removeTask($index)">remove</button>
-        </li>
-    </ul>
-    <p ng-show="tasks.length > 0">You have {{ tasks.length }} tasks.</p>
-    <p ng-hide="tasks.length > 0">0 tasks</p>
-    <div ng-if="tasks.length >= 5">
-        <strong>you are insane! 5+ tasks</strong>
-    </div>
-    <!-- Scripts -->
+    <nav>
+        <a href="#!/">Tasks</a>
+        <a href="#!/about">About</a>
+    </nav>
+
+    <!-- Aqui o ngRoute injeta a view da rota atual -->
+    <div ng-view></div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
     <script src="app/app.module.js"></script>
+    <script src="app/app.routes.js"></script>
+    <script src="app/services/task.service.js"></script>
+    <script src="app/components/taskList/taskList.component.js"></script>
+    <script src="app/controllers/about.controller.js"></script>
 </body>
 </html>
