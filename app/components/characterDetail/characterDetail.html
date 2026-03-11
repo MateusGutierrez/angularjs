@@ -1,0 +1,55 @@
+<div>
+    <a href="#!/characters" class="btn btn-secondary mb-md">Voltar</a>
+
+    <!-- Loading -->
+    <div class="loading-center" ng-show="$ctrl.loading">
+        <div class="spinner spinner-lg"></div>
+    </div>
+
+    <!-- Erro -->
+    <div class="error-state" ng-show="$ctrl.error && !$ctrl.loading">
+        <p>{{ $ctrl.error }}</p>
+    </div>
+
+    <!-- Detalhe -->
+    <div class="character-detail" ng-if="$ctrl.character && !$ctrl.loading">
+        <img ng-src="{{ $ctrl.character.image }}" alt="{{ $ctrl.character.name }}" img-fallback>
+        <div class="info">
+            <h1>{{ $ctrl.character.name }}</h1>
+
+            <div class="info-row">
+                <span class="label">Status</span>
+                <span class="value">
+                    <span class="badge"
+                          ng-class="{
+                              'badge-alive': $ctrl.character.status === 'Alive',
+                              'badge-dead': $ctrl.character.status === 'Dead',
+                              'badge-unknown': $ctrl.character.status === 'unknown'
+                          }">
+                        {{ $ctrl.character.status | translateStatus }}
+                    </span>
+                </span>
+            </div>
+            <div class="info-row">
+                <span class="label">Espécie</span>
+                <span class="value">{{ $ctrl.character.species }}</span>
+            </div>
+            <div class="info-row">
+                <span class="label">Gênero</span>
+                <span class="value">{{ $ctrl.character.gender }}</span>
+            </div>
+            <div class="info-row">
+                <span class="label">Origem</span>
+                <span class="value">{{ $ctrl.character.origin.name }}</span>
+            </div>
+            <div class="info-row">
+                <span class="label">Localização</span>
+                <span class="value">{{ $ctrl.character.location.name }}</span>
+            </div>
+            <div class="info-row">
+                <span class="label">Episódios</span>
+                <span class="value">{{ $ctrl.character.episode.length }} episódio(s)</span>
+            </div>
+        </div>
+    </div>
+</div>

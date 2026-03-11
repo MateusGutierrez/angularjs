@@ -3,33 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task App</title>
-    <style>
-        .done {
-            text-decoration: line-through;
-            opacity: 0.5;
-        }
-        nav { margin-bottom: 20px; }
-        nav a { margin-right: 10px; }
-    </style>
+    <title>AngularJS App</title>
+    <link rel="stylesheet" href="styles/main.css">
 </head>
 
 <body>
+    <loading-bar></loading-bar>
+    <app-navbar></app-navbar>
 
-    <nav>
-        <a href="#!/">Tasks</a>
-        <a href="#!/about">About</a>
-    </nav>
+    <div class="app-container">
+        <div ng-view></div>
+    </div>
 
-    <!-- Aqui o ngRoute injeta a view da rota atual -->
-    <div ng-view></div>
-
+    <!-- AngularJS Core -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+
+    <!-- App Module -->
     <script src="app/app.module.js"></script>
     <script src="app/app.routes.js"></script>
+
+    <!-- Services -->
+    <script src="app/services/store.service.js"></script>
     <script src="app/services/task.service.js"></script>
+    <script src="app/services/rickAndMorty.service.js"></script>
+    <script src="app/services/http.interceptor.js"></script>
+
+    <!-- Filters & Directives -->
+    <script src="app/filters/custom.filters.js"></script>
+    <script src="app/directives/loading.directive.js"></script>
+
+    <!-- Components -->
+    <script src="app/components/navbar/navbar.component.js"></script>
     <script src="app/components/taskList/taskList.component.js"></script>
+    <script src="app/components/characterList/characterList.component.js"></script>
+    <script src="app/components/characterDetail/characterDetail.component.js"></script>
+
+    <!-- Controllers -->
     <script src="app/controllers/about.controller.js"></script>
 </body>
 </html>

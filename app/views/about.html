@@ -1,5 +1,26 @@
-<div>
-    <h2>Sobre</h2>
-    <p>App de tarefas feito com AngularJS 1.x</p>
-    <p>Total de tarefas criadas: {{ taskCount }}</p>
+<div class="about-page">
+    <div class="section-header">
+        <h2>Sobre o Projeto</h2>
+        <p>App de estudo AngularJS 1.x</p>
+    </div>
+
+    <div class="card">
+        <h3>Estatísticas</h3>
+        <p class="mt-sm">Total de tarefas criadas: {{ taskCount }}</p>
+    </div>
+
+    <div class="card mt-md">
+        <h3>Tecnologias utilizadas</h3>
+        <ul class="tech-list">
+            <li>AngularJS 1.8.2</li>
+            <li>ngRoute (navegação SPA)</li>
+            <li>Components (arquitetura componentizada)</li>
+            <li>Services & Factories (lógica de negócio)</li>
+            <li>HTTP Interceptors (loading global)</li>
+            <li>Custom Directives (loading-bar, img-fallback)</li>
+            <li>Custom Filters (translateStatus, truncate, capitalize)</li>
+            <li>Store pattern (gerenciamento de estado)</li>
+            <li>Rick and Morty API (consumo de API REST)</li>
+        </ul>
+    </div>
 </div>

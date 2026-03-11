@@ -1,38 +1,54 @@
 <div>
-    <form name="taskForm" ng-submit="$ctrl.addTask()" novalidate>
-        <input type="text" ng-model="$ctrl.newTask" required ng-minlength="3">
-        <button type="submit" ng-disabled="taskForm.$invalid">Add</button>
-        <span ng-show="taskForm.$submitted && taskForm.$invalid" style="color: red;">
-            Mínimo 3 caracteres.
-        </span>
+    <div class="section-header">
+        <h2>Tarefas</h2>
+        <p>Gerencie suas tarefas do dia</p>
+    </div>
+
+    <form name="taskForm" ng-submit="$ctrl.addTask()" novalidate class="task-form">
+        <input type="text" ng-model="$ctrl.newTask" required ng-minlength="3" placeholder="Nova tarefa...">
+        <button type="submit" class="btn btn-primary" ng-disabled="taskForm.$invalid">Adicionar</button>
     </form>
+    <span ng-show="taskForm.$submitted && taskForm.$invalid" class="validation-error">
+        Mínimo 3 caracteres.
+    </span>
 
-    <hr>
-    <input type="text" ng-model="$ctrl.search" placeholder="Buscar tarefa...">
-    <button ng-click="$ctrl.filter = {}">All</button>
-    <button ng-click="$ctrl.filter = {done: false}">Pending</button>
-    <button ng-click="$ctrl.filter = {done: true}">Done</button>
+    <div class="task-filters">
+        <input type="text" ng-model="$ctrl.search" placeholder="Buscar tarefa...">
+        <button class="btn btn-sm btn-secondary" ng-click="$ctrl.filter = {}">Todas</button>
+        <button class="btn btn-sm btn-secondary" ng-click="$ctrl.filter = {done: false}">Pendentes</button>
+        <button class="btn btn-sm btn-secondary" ng-click="$ctrl.filter = {done: true}">Feitas</button>
+    </div>
 
-    <ul>
-        <li ng-repeat="task in $ctrl.tasks | filter:$ctrl.search | filter:$ctrl.filter | orderBy:'name' track by $index"
-            ng-class="{'done': task.done}">
+    <div ng-repeat="task in $ctrl.tasks | filter:$ctrl.search | filter:$ctrl.filter | orderBy:'name' track by $index"
+         ng-class="{'done': task.done}"
+         class="task-item">
 
-            <span ng-hide="task.editing">
-                {{ task.name }}
-                <button ng-click="$ctrl.toggleTask(task)">{{ task.done ? 'Undone' : 'Done' }}</button>
-                <button ng-click="task.editing = true">Edit</button>
-                <button ng-click="$ctrl.removeTask($index)">Remove</button>
-            </span>
+        <span ng-hide="task.editing" class="task-name">{{ task.name }}</span>
 
-            <span ng-show="task.editing">
-                <input type="text" ng-model="task.name">
-                <button ng-click="task.editing = false">Save</button>
-            </span>
-        </li>
-    </ul>
+        <span ng-show="task.editing">
+            <input type="text" ng-model="task.name">
+        </span>
 
-    <p ng-show="$ctrl.stats.total > 0">
-        {{ $ctrl.stats.total }} tarefa(s): {{ $ctrl.stats.done }} feita(s), {{ $ctrl.stats.pending }} pendente(s).
-    </p>
-    <p ng-hide="$ctrl.stats.total > 0">Nenhuma tarefa ainda.</p>
+        <div class="task-actions" ng-hide="task.editing">
+            <button class="btn btn-sm btn-secondary" ng-click="$ctrl.toggleTask(task)">
+                {{ task.done ? 'Desfazer' : 'Concluir' }}
+            </button>
+            <button class="btn btn-sm btn-secondary" ng-click="task.editing = true">Editar</button>
+            <button class="btn btn-sm btn-danger" ng-click="$ctrl.removeTask($index)">Remover</button>
+        </div>
+
+        <div class="task-actions" ng-show="task.editing">
+            <button class="btn btn-sm btn-primary" ng-click="task.editing = false">Salvar</button>
+        </div>
+    </div>
+
+    <div class="empty-state" ng-hide="$ctrl.tasks.length > 0">
+        <p>Nenhuma tarefa ainda.</p>
+    </div>
+
+    <div class="task-stats" ng-show="$ctrl.stats.total > 0">
+        <span>Total: {{ $ctrl.stats.total }}</span>
+        <span>Feitas: {{ $ctrl.stats.done }}</span>
+        <span>Pendentes: {{ $ctrl.stats.pending }}</span>
+    </div>
 </div>
