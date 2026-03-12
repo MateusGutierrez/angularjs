@@ -9,14 +9,14 @@ Marque com `[x]` conforme for completando.
 
 ### Bugs para corrigir
 
-- [ ] **Bug: Contador de stats não atualiza em tempo real**
+- [X] **Bug: Contador de stats não atualiza em tempo real**
   O contador de tarefas (total/feitas/pendentes) só atualiza ao adicionar/remover.
   Se você marcar uma tarefa como "concluir", o contador não muda até a próxima ação.
   _Dica: o `stats` é recalculado só em `addTask` e `removeTask`._
-- [ ] **Bug: Formulário aceita tarefas com espaços em branco**
+- [X] **Bug: Formulário aceita tarefas com espaços em branco**
   Digite `"   "` (só espaços) com 3+ caracteres — o formulário aceita.
   Corrija a validação para rejeitar strings que sejam só whitespace.
-- [ ] **Bug: Edição não tem cancelamento**
+- [X] **Bug: Edição não tem cancelamento**
   Ao clicar em "Editar", se o usuário mudar o texto e quiser cancelar, não tem como desfazer.
   Adicione um botão "Cancelar" que restaura o valor original.
 

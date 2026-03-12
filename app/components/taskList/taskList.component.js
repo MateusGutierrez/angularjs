@@ -27,9 +27,17 @@ angular.module('taskApp')
 
             ctrl.toggleTask = function(task) {
                 TaskService.toggle(task);
+                ctrl.stats = TaskService.getStats();
             };
-
-            // Proteção: confirmar antes de sair da rota
+            ctrl.saveTask = function(task) {
+                TaskService.save(task)
+            }
+            ctrl.editTask = function(task){
+                TaskService.edit(task)
+            }
+            ctrl.restoreTask = function(task) {
+                TaskService.restore(task)
+            }
             var deregister = $scope.$on('$routeChangeStart', function(event) {
                 var pending = TaskService.getStats().pending;
                 if (pending > 0) {
@@ -41,8 +49,6 @@ angular.module('taskApp')
                     }
                 }
             });
-
-            // Limpar o listener quando o componente for destruído
             ctrl.$onDestroy = function() {
                 deregister();
             };

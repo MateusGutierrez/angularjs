@@ -5,11 +5,8 @@ angular.module('taskApp').factory('TaskService', function(){
             return tasks
         },
         add: function(name) {
-            tasks.push({
-                name: name,
-                done: false,
-                editing: false
-            })
+            if (!name || !name.trim()) return;
+            tasks.push({ name: name.trim(), done: false, editing: false });
         },
         remove: function(index){
             tasks.splice(index,1)
@@ -23,6 +20,19 @@ angular.module('taskApp').factory('TaskService', function(){
                 done: tasks.filter(function(t) { return t.done; }).length,
                 pending: tasks.filter(function(t) { return !t.done; }).length
             }
+        },
+        edit: function(task) {
+            task.backup = angular.copy(task);
+            task.editing = true
+        },
+        save: function(task) {
+            task.editing = false
+            delete task.backup
+        },
+        restore: function(task) {
+            angular.extend(task, task.backup)
+            task.editing = false
+            delete task.backup
         }
     }
 })

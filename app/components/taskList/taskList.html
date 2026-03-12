@@ -5,8 +5,11 @@
     </div>
 
     <form name="taskForm" ng-submit="$ctrl.addTask()" novalidate class="task-form">
-        <input type="text" ng-model="$ctrl.newTask" required ng-minlength="3" placeholder="Nova tarefa...">
-        <button type="submit" class="btn btn-primary" ng-disabled="taskForm.$invalid">Adicionar</button>
+        <input type="text" ng-model="$ctrl.newTask" required ng-minlength="3" placeholder="Nova tarefa..." 
+            ng-pattern="/\S/"
+            ng-trim="true"
+        >
+        <button type="submit" class="btn btn-primary" ng-disabled="taskForm.$invalid" ng-minlength="3">Adicionar</button>
     </form>
     <span ng-show="taskForm.$submitted && taskForm.$invalid" class="validation-error">
         Mínimo 3 caracteres.
@@ -33,12 +36,13 @@
             <button class="btn btn-sm btn-secondary" ng-click="$ctrl.toggleTask(task)">
                 {{ task.done ? 'Desfazer' : 'Concluir' }}
             </button>
-            <button class="btn btn-sm btn-secondary" ng-click="task.editing = true">Editar</button>
+            <button class="btn btn-sm btn-secondary" ng-click="$ctrl.editTask(task)">Editar</button>
             <button class="btn btn-sm btn-danger" ng-click="$ctrl.removeTask($index)">Remover</button>
         </div>
 
         <div class="task-actions" ng-show="task.editing">
-            <button class="btn btn-sm btn-primary" ng-click="task.editing = false">Salvar</button>
+            <button class="btn btn-sm btn-primary" ng-click="$ctrl.saveTask(task)">Salvar</button>
+            <button class="btn btn-sm btn-secondary" ng-click="$ctrl.restoreTask(task)">Cancelar</button>
         </div>
     </div>
 
