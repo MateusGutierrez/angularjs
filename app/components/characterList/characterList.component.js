@@ -38,10 +38,6 @@ angular.module('taskApp')
             };
 
             ctrl.search = function() {
-                Store.merge({
-                    pagination: { currentPage: 1, totalPages: 1 },
-                    characterFilters: angular.copy(ctrl.filters)
-                });
                 ctrl.loadCharacters();
             };
 

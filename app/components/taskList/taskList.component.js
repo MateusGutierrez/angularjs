@@ -27,7 +27,6 @@ angular.module('taskApp')
 
             ctrl.toggleTask = function(task) {
                 TaskService.toggle(task);
-                ctrl.stats = TaskService.getStats();
             };
 
             // Proteção: confirmar antes de sair da rota
