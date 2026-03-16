@@ -20,6 +20,8 @@
         <button class="btn btn-sm btn-secondary" ng-click="$ctrl.filter = {}">Todas</button>
         <button class="btn btn-sm btn-secondary" ng-click="$ctrl.filter = {done: false}">Pendentes</button>
         <button class="btn btn-sm btn-secondary" ng-click="$ctrl.filter = {done: true}">Feitas</button>
+        <button class="btn btn-sm btn-secondary" ng-click="">Ordenar por A-Z ou Z-A</button>
+        <button class="btn btn-sm btn-secondary" ng-click="">Ordenar por data de criação</button>
     </div>
 
     <div ng-repeat="task in $ctrl.tasks | filter:$ctrl.search | filter:$ctrl.filter | orderBy:'name' track by $index"
@@ -27,11 +29,12 @@
          class="task-item">
 
         <span ng-hide="task.editing" class="task-name">{{ task.name }}</span>
-
         <span ng-show="task.editing">
             <input type="text" ng-model="task.name">
         </span>
-
+        <div class="task-date">
+            <span>{{ task.createdAt | date: 'dd/MM/yyyy HH:mm'}}</span>
+        </div>
         <div class="task-actions" ng-hide="task.editing">
             <button class="btn btn-sm btn-secondary" ng-click="$ctrl.toggleTask(task)">
                 {{ task.done ? 'Desfazer' : 'Concluir' }}
@@ -49,7 +52,7 @@
     <div class="empty-state" ng-hide="$ctrl.tasks.length > 0">
         <p>Nenhuma tarefa ainda.</p>
     </div>
-
+    
     <div class="task-stats" ng-show="$ctrl.stats.total > 0">
         <span>Total: {{ $ctrl.stats.total }}</span>
         <span>Feitas: {{ $ctrl.stats.done }}</span>

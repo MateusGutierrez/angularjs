@@ -22,11 +22,11 @@ Marque com `[x]` conforme for completando.
 
 ### Features para implementar
 
-- [ ] **Feature: Persistir tarefas no localStorage**
+- [X] **Feature: Persistir tarefas no localStorage**
   As tarefas somem quando a página recarrega.
   Use `localStorage` para salvar e recuperar as tarefas.
-  _Dica: use `JSON.stringify()` e `JSON.parse()`. Atualize o `TaskService`._
-- [ ] **Feature: Adicionar data de criação às tarefas**
+  _Dica: use `JSON.-stringify()` e `JSON.parse()`. Atualize o `TaskService`._
+- [X] **Feature: Adicionar data de criação às tarefas**
   Cada tarefa deve mostrar quando foi criada.
   _Dica: use o filtro `date` do Angular: `{{ task.createdAt | date:'dd/MM/yyyy HH:mm' }}`._
 - [ ] **Feature: Ordenação customizada**
