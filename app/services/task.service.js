@@ -43,6 +43,10 @@ angular.module('taskApp').factory('TaskService', function(){
             task.editing = false
             delete task.backup
             persist()
+        },
+        clearDoneTasks: function () {
+            tasks = tasks.filter((t) => t.done !== true)
+            persist()
         }
     }
 })

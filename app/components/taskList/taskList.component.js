@@ -7,7 +7,7 @@ angular.module('taskApp')
             ctrl.newTask = '';
             ctrl.filter = {};
             ctrl.search = '';
-
+            ctrl.currentOrder = ''
             // Lifecycle hook - chamado quando o componente inicia
             ctrl.$onInit = function() {
                 ctrl.tasks = TaskService.getAll();
@@ -51,6 +51,14 @@ angular.module('taskApp')
             });
             ctrl.$onDestroy = function() {
                 deregister();
-            };
+            }
+            ctrl.setOrder = function (order){
+                ctrl.currentOrder = order
+            }
+            ctrl.clearDoneTasks = function(){
+                TaskService.clearDoneTasks();
+                ctrl.tasks = TaskService.getAll();
+                ctrl.stats = TaskService.getStats()
+            }
         }
     });

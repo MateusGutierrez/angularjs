@@ -19,12 +19,15 @@
         <input type="text" ng-model="$ctrl.search" placeholder="Buscar tarefa...">
         <button class="btn btn-sm btn-secondary" ng-click="$ctrl.filter = {}">Todas</button>
         <button class="btn btn-sm btn-secondary" ng-click="$ctrl.filter = {done: false}">Pendentes</button>
-        <button class="btn btn-sm btn-secondary" ng-click="$ctrl.filter = {done: true}">Feitas</button>
-        <button class="btn btn-sm btn-secondary" ng-click="">Ordenar por A-Z ou Z-A</button>
-        <button class="btn btn-sm btn-secondary" ng-click="">Ordenar por data de criação</button>
+        <button class="btn btn-sm btn-secondary" ng-click="$ctrl.setOrder('done')">Feitas</button>
+        <button class="btn btn-sm btn-secondary" ng-click="$ctrl.setOrder('name')">Nome A-Z</button>
+        <button class="btn btn-sm btn-secondary" ng-click="$ctrl.setOrder('-name')">Nome Z-A</button>
+        <button class="btn btn-sm btn-secondary" ng-click="$ctrl.setOrder('date')">Mais recente</button>
+        <button class="btn btn-sm btn-secondary" ng-click="$ctrl.setOrder('-date')">Mais antigo</button>
+        <button class="btn btn-sm btn-secondary" ng-click="$ctrl.clearDoneTasks()">Limpar tarefas concluídas</button>
     </div>
 
-    <div ng-repeat="task in $ctrl.tasks | filter:$ctrl.search | filter:$ctrl.filter | orderBy:'name' track by $index"
+    <div ng-repeat="task in $ctrl.tasks | filter:$ctrl.search | filter:$ctrl.filter | orderBy: $ctrl.currentOrder track by $index"
          ng-class="{'done': task.done}"
          class="task-item">
 

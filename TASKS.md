@@ -29,10 +29,10 @@ Marque com `[x]` conforme for completando.
 - [X] **Feature: Adicionar data de criação às tarefas**
   Cada tarefa deve mostrar quando foi criada.
   _Dica: use o filtro `date` do Angular: `{{ task.createdAt | date:'dd/MM/yyyy HH:mm' }}`._
-- [ ] **Feature: Ordenação customizada**
+- [X] **Feature: Ordenação customizada**
   Adicione botões para ordenar por: nome (A-Z), nome (Z-A), data de criação, status.
   _Dica: `orderBy` aceita `-name` para ordem reversa._
-- [ ] **Feature: Limpar todas as tarefas concluídas**
+- [X] **Feature: Limpar todas as tarefas concluídas**
   Adicione um botão "Limpar concluídas" que remove todas as tarefas com `done: true` de uma vez.
 
 ---
